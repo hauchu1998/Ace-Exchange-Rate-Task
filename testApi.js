@@ -14,7 +14,7 @@ async function start() {
     try {
         // ace
         const response = await axios.get('https://ace.io/polarisex/oapi/list/tradePrice');
-        // console.log(response.data);
+        console.log('get exchange rate');
         // bitpro
         // const response = await axios.get("https://api.bitopro.com/v3/tickers");
         // console.log(response.data);
@@ -26,7 +26,7 @@ async function start() {
                 dateStrings: true,
                 sql: `SELECT pair, rate FROM bavepay.exchange_rate WHERE pair = '${key}'`
             })
-            console.log(key, response.data[key].last_price);
+            // console.log(key, response.data[key].last_price);
             if (result.length > 1) {
                 conn.query({
                     dateStrings: true,
@@ -47,5 +47,5 @@ async function start() {
     }
 }
 
-// setInterval(start, 1500);
-start()
+setInterval(start, 10000);
+// start()
