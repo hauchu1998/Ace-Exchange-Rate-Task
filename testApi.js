@@ -27,7 +27,7 @@ async function start() {
                 sql: `SELECT pair, rate FROM bavepay.exchange_rate WHERE pair = '${key}'`
             })
             // console.log(key, response.data[key].last_price);
-            if (result.length > 1) {
+            if (result.length > 0) {
                 conn.query({
                     dateStrings: true,
                     sql: `UPDATE bavepay.exchange_rate SET rate = '${response.data[key].last_price}' WHERE (pair = '${key}')`
